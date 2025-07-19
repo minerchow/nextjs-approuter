@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -19,6 +20,13 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <div className={styles.links}>
+          <Link href="/csr" className={styles.link}>CSR</Link>
+          <Link href="/isr/[id]" className={styles.link}>ISR</Link>
+          <Link href="/ssg" className={styles.link}>SSG</Link>
+          <Link href="/ssr" className={styles.link}>SSR</Link>
+        </div>
 
         <div className={styles.ctas}>
           <a
