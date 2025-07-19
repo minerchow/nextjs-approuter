@@ -23,7 +23,7 @@ export default function Home() {
 
         <div className={styles.links}>
           <Link href="/csr" className={styles.link}>CSR</Link>
-          <Link href="/isr/[id]" className={styles.link}>ISR</Link>
+          <Link href="/isr" className={styles.link}>ISR</Link>
           <Link href="/ssg" className={styles.link}>SSG</Link>
           <Link href="/ssr" className={styles.link}>SSR</Link>
         </div>
