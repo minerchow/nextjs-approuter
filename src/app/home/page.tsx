@@ -1,18 +1,40 @@
-import { Suspense } from 'react';
-const DyamicContent = async()=>{
-    const data = await fetch('https://www.mocklib.com/random/name');
-    console.error("data2" ,data)
-    const json = await data.json();
-    return <div>{JSON.stringify(json)}</div>;
-        
+import { cacheLife } from "next/cache"
+import { Suspense } from "react"
+// import { cookies } from "next/headers"
+
+const DynamicContent = async () => {
+    'use cache'
+    cacheLife({
+      stale:5,
+      revalidate:5,
+      expire:30
+    })
+    const data = await fetch('https://www.mocklib.com/mock/random/name') //随机生成一个名称
+    const json = await data.json()
+    // console.log(json)
+    // const cookieStore = await cookies() //获取cookie
+    // console.log(cookieStore)
+    return (
+        <div>
+            <h2>动态内容</h2>
+            <main>
+                <ul>
+                    <li>名称：{json.name}</li>
+                </ul>
+            </main>
+        </div>
+    )
 }
-export default function Home() {
-  return (
-    <div>
-        <Suspense fallback={<div>Loading...</div>}>
-            <DyamicContent />
-        </Suspense>
-      <h1>Home</h1>
-    </div>
-  );
+
+export default async function Home() {
+
+    return (
+        <div>
+            <h1>Home</h1>
+            <Suspense fallback={<div>动态内容Loading...</div>}>
+                <DynamicContent />
+            </Suspense>
+        </div>
+    )
 }
+
