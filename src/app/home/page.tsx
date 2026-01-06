@@ -1,3 +1,4 @@
+import AppForm from "@/components/AppForm"
 import { cacheLife } from "next/cache"
 import { Suspense } from "react"
 // import { cookies } from "next/headers"
@@ -22,6 +23,7 @@ const DynamicContent = async () => {
                     <li>名称：{json.name}</li>
                 </ul>
             </main>
+            <AppForm />
         </div>
     )
 }
